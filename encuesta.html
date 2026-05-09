@@ -148,46 +148,49 @@ h1 span{background:linear-gradient(135deg,#5DADE2,#1A5276);-webkit-background-cl
   </form>
 </div>
 <script>
-// Resaltar opción seleccionada
 document.querySelectorAll('.option-label input[type="radio"]').forEach(radio => {
   radio.addEventListener('change', () => {
-    document.querySelectorAll().forEach(r => {
-      r.closest('.option-label').classList.remove('selected');
+    document.querySelectorAll('.option-label').forEach(label => {
+      label.classList.remove('selected');
     });
     radio.closest('.option-label').classList.add('selected');
   });
 });
 
-// Submit al Google Apps Script
 document.getElementById('encuestaForm').addEventListener('submit', async function(e) {
   e.preventDefault();
+
   const btn = document.getElementById('submitBtn');
   const errorMsg = document.getElementById('errorMsg');
+  const successMsg = document.getElementById('successMsg');
+
   btn.disabled = true;
   btn.textContent = 'Enviando...';
   errorMsg.style.display = 'none';
 
   const data = {
-  molestia: this.molestia.value,
-  resultado: this.resultado.value,
-  dificultad: this.dificultad.value,
-  dispositivo: this.dispositivo.value,
-  mensaje: this.mensaje.value
-};
+    molestia: this.molestia.value,
+    situacion: this.situacion.value,
+    mejorar: this.mejorar.value,
+    freno: this.freno.value,
+    interes: this.interes.value,
+    adicional: this.adicional.value
+  };
 
   try {
     await fetch('https://script.google.com/macros/s/AKfycbwAcvryU9QvmEL8CXasbkdbU9VnsBX7eOtaJTn71cxGSALdtnzH_j15ThWYOy9G-anK/exec', {
       method: 'POST',
       mode: 'no-cors',
-      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data)
     });
-    document.getElementById('encuestaForm').style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
+
+    this.style.display = 'none';
+    successMsg.style.display = 'block';
+
   } catch(err) {
     errorMsg.style.display = 'block';
     btn.disabled = false;
-    btn.textContent = 'Enviar mis respuestas ✓';
+    btn.textContent = 'Enviar y desbloquear mi sorpresa 🎁';
   }
 });
 </script>
