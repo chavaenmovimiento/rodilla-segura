@@ -3,38 +3,151 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gracias por tu registro | Rodilla Segura</title>
-</head>
-<body style="margin:0; padding:0; background-color:#f8f9fa; font-family:Arial, sans-serif;">
+  <title>Gracias | Rodilla Segura</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <section style="max-width:700px; margin:60px auto; background:white; padding:40px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); text-align:center;">
-    
-    <h1 style="color:#0B5ED7; font-size:2.4rem; margin-bottom:20px;">
-      ¡Gracias por registrarte!
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+
+    body{
+      background:#0A0F1E;
+      font-family:"DM Sans",sans-serif;
+      color:#F1F5F9;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px 20px;
+    }
+
+    .card{
+      max-width:520px;
+      width:100%;
+      text-align:center;
+      background:#111827;
+      border:1px solid #1e2d45;
+      border-radius:24px;
+      padding:36px 28px;
+      box-shadow:0 12px 40px rgba(0,0,0,.35);
+    }
+
+    .logo{
+      width:150px;
+      margin:0 auto 20px;
+      display:block;
+      filter:drop-shadow(0 4px 24px rgba(26,130,130,.25));
+    }
+
+    .check{
+      width:64px;
+      height:64px;
+      margin:0 auto 18px;
+      background:linear-gradient(135deg,#1A5276,#154360);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:34px;
+      font-weight:800;
+      color:white;
+    }
+
+    h1{
+      font-size:clamp(30px,6vw,42px);
+      line-height:1.1;
+      font-weight:800;
+      margin-bottom:16px;
+    }
+
+    h1 span{
+      color:#3498DB;
+    }
+
+    .text{
+      color:#94A3B8;
+      font-size:16px;
+      line-height:1.7;
+      margin-bottom:22px;
+    }
+
+    .gift{
+      background:#0A0F1E;
+      border:1px solid #1e2d45;
+      border-radius:18px;
+      padding:18px;
+      margin:22px 0;
+      color:#CBD5E1;
+      font-size:15px;
+      line-height:1.6;
+    }
+
+    .gift strong{
+      color:#F1F5F9;
+    }
+
+    .time{
+      color:#8FA3BF;
+      font-size:14px;
+      margin-bottom:24px;
+    }
+
+    .btn{
+      display:block;
+      width:100%;
+      background:linear-gradient(135deg,#1F618D,#2874A6);
+      color:#fff;
+      text-decoration:none;
+      border-radius:16px;
+      padding:18px 20px;
+      font-size:20px;
+      font-weight:800;
+      transition:.2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 24px rgba(52,152,219,.22);
+    }
+
+    .footer{
+      margin-top:20px;
+      font-size:13px;
+      color:#64748B;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="card">
+
+    <img src="TU_LOGO_AQUI" alt="Chava en Movimiento" class="logo">
+
+    <div class="check">✓</div>
+
+    <h1>
+      Tu pre-registro <span>quedó confirmado</span>
     </h1>
 
-    <p style="font-size:1.2rem; color:#333; margin-bottom:15px;">
-      Tu pre-registro para <strong>Rodilla Segura</strong> está completo.
+    <p class="text">
+      Ahora solo falta un paso para entender mejor tu caso y adaptar Rodilla Segura a personas como tú.
     </p>
 
-    <p style="font-size:1.1rem; color:#555; margin-bottom:25px; line-height:1.6;">
-      Estás a un paso de recibir tu regalo gratuito:
+    <div class="gift">
+      Al terminar la encuesta, desbloquearás el regalo:
       <br>
       <strong>Temario del Programa Rodilla Segura</strong>
+    </div>
+
+    <p class="time">
+      Te tomará menos de 2 minutos.
     </p>
 
-    <p style="font-size:1rem; color:#666; margin-bottom:30px;">
-      Primero responde esta breve encuesta para entender mejor tu caso y darte contenido más útil.
-      <br><br>
-      <strong>Te tomará menos de 30 segundos.</strong>
-    </p>
-
-    <a href="https://preregistro.chavaenmovimiento.com/encuesta.html"
-       style="display:inline-block; background-color:#0B5ED7; color:white; padding:18px 40px; text-decoration:none; font-size:1.2rem; font-weight:bold; border-radius:8px;">
-      IR A LA ENCUESTA
+    <a href="https://preregistro.chavaenmovimiento.com/encuesta.html" class="btn">
+      Responder encuesta →
     </a>
 
-    <p style="margin-top:35px; font-size:0.95rem; color:#888;">
+    <p class="footer">
       Gracias por confiar en Chava en Movimiento.
     </p>
 
