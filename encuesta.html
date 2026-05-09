@@ -176,6 +176,7 @@ document.getElementById('encuestaForm').addEventListener('submit', async functio
   const btn = document.getElementById('submitBtn');
   const errorMsg = document.getElementById('errorMsg');
   const successMsg = document.getElementById('successMsg');
+  successMsg.style.display = 'none';
 
   btn.disabled = true;
   btn.textContent = 'Enviando...';
@@ -197,8 +198,18 @@ document.getElementById('encuestaForm').addEventListener('submit', async functio
       body: JSON.stringify(data)
     });
 
-    this.style.display = 'none';
-    successMsg.style.display = 'block';
+ document.getElementById('encuestaForm').style.display = 'none';
+
+const tag = document.querySelector('.tag');
+if (tag) tag.style.display = 'none';
+
+const title = document.querySelector('h1');
+if (title) title.style.display = 'none';
+
+const sub = document.querySelector('.sub');
+if (sub) sub.style.display = 'none';
+
+successMsg.style.display = 'block';
 
   } catch(err) {
     errorMsg.style.display = 'block';
