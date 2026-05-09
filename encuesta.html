@@ -37,9 +37,19 @@ h1 span{background:linear-gradient(135deg,#5DADE2,#1A5276);-webkit-background-cl
 .inp:focus,.textarea:focus{border-color:#1A5276;}
 .inp::placeholder,.textarea::placeholder{color:#334155;}
 .options{display:flex;flex-direction:column;gap:6px;}
-.option-label{display:flex;align-items:center;gap:10px;background:#0A0F1E;border:1px solid #1e2d45;border-radius:10px;padding:12px 14px;}
+.option-label{
+display:flex;
+align-items:center;
+gap:8px;
+background:#0A0F1E;
+border:1px solid #1e2d45;
+border-radius:8px;
+padding:8px 12px;
+min-height:44px;
+}
+
 .option-label:hover{border-color:#1A5276;}
-.option-label input[type="radio"]{accent-color:#1A5276;width:16px;height:16px;flex-shrink:0;}
+.option-label input[type="radio"]{width:14px;height:14px;}flex-shrink:0;}
 .option-label input[type="radio"]:checked + span{color:#5DADE2;}
 .option-label.selected{border-color:#1A5276;background:rgba(26,82,118,.1);}
 .divider{height:1px;background:#1e2d45;margin:14px 0;}
