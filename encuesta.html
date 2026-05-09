@@ -130,7 +130,7 @@ h1 span{background:linear-gradient(135deg,#5DADE2,#1A5276);-webkit-background-cl
       <textarea class="textarea" name="adicional" placeholder="Este espacio es tuyo..."></textarea>
     </div>
 
-    <button class="btn" type="submit">Enviar y desbloquear mi sorpresa 🎁</button>
+    <button class="btn" type="submit" id="submitBtn">Enviar y desbloquear mi sorpresa 🎁</button>
 
     <p class="disclaimer">🔒 Tu información es privada. Tus respuestas me ayudan a construir un mejor programa para ti.</p>
 
@@ -168,12 +168,12 @@ document.getElementById('encuestaForm').addEventListener('submit', async functio
   errorMsg.style.display = 'none';
 
   const data = {
-    molestia: this.molestia.value,
-    resultado: this.resultado.value,
-    dificultad: this.dificultad.value,
-    dispositivo: this.dispositivo.value,
-    mensaje: this.mensaje.value
-  };
+  molestia: this.molestia.value,
+  resultado: this.resultado.value,
+  dificultad: this.dificultad.value,
+  dispositivo: this.dispositivo.value,
+  mensaje: this.mensaje.value
+};
 
   try {
     await fetch('https://script.google.com/macros/s/AKfycbwAcvryU9QvmEL8CXasbkdbU9VnsBX7eOtaJTn71cxGSALdtnzH_j15ThWYOy9G-anK/exec', {
