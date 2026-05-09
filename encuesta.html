@@ -249,7 +249,7 @@ min-height:44px;
     Gracias por ayudarme a personalizar mejor Rodilla Segura para ti.
   </p>
 
-  <a href="https://drive.google.com/uc?export=download&id=1IE4rmS7Iv4VSqEaxmyG30CDBcjAVmGE8" class="btn" target="_blank">
+  <a href="https://drive.google.com/uc?export=download&id=1zaLzB_p3hq_P5v_artglZB9CSRUj7HSP" class="btn" target="_blank">
     Descargar regalo 🎁
   </a>
 
@@ -282,19 +282,38 @@ document.getElementById('encuestaForm').addEventListener('submit', async functio
   btn.textContent = 'Enviando...';
   errorMsg.style.display = 'none';
 
+  const molestia = this.molestia.value.trim();
+  const situacion = this.situacion.value;
+  const mejorar = this.mejorar.value;
+  const freno = this.freno.value;
+  const interes = this.interes.value;
+  const adicional = this.adicional.value.trim();
+
   const data = {
-    molestia: this.molestia.value,
-    situacion: this.situacion.value,
-    mejorar: this.mejorar.value,
-    freno: this.freno.value,
-    interes: this.interes.value,
-    adicional: this.adicional.value
+    // Campos actuales del formulario
+    molestia,
+    situacion,
+    mejorar,
+    freno,
+    interes,
+    adicional,
+
+    // Compatibilidad con el Apps Script/Sheet anterior
+    resultados: situacion,
+    dificultad: mejorar,
+    dispositivo: freno,
+    mensaje: `Interés: ${interes}${adicional ? `\nAdicional: ${adicional}` : ''}`,
+
+    origen: 'landing-preregistro',
+    pagina: 'encuesta',
+    fechaCliente: new Date().toISOString()
   };
 
   try {
     await fetch('https://script.google.com/macros/s/AKfycbwAcvryU9QvmEL8CXasbkdbU9VnsBX7eOtaJTn71cxGSALdtnzH_j15ThWYOy9G-anK/exec', {
       method: 'POST',
       mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(data)
     });
 
