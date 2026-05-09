@@ -144,7 +144,7 @@
       ⏱ Te tomará menos de 2 minutos.
     </p>
 
-    <a href="https://preregistro.chavaenmovimiento.com/encuesta.html" class="btn">
+    <a id="encuestaLink" href="https://preregistro.chavaenmovimiento.com/encuesta.html" class="btn">
       Acceder a mi sorpresa 🎁
     </a>
 
@@ -154,5 +154,11 @@
 
   </section>
 
+<script>
+const encuestaLink = document.getElementById('encuestaLink');
+if (encuestaLink && window.location.search) {
+  encuestaLink.href = `https://preregistro.chavaenmovimiento.com/encuesta.html${window.location.search}`;
+}
+</script>
 </body>
 </html>

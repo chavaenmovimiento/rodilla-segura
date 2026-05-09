@@ -52,36 +52,74 @@ h1 span{background:linear-gradient(135deg,#5DADE2,#1A5276);-webkit-background-cl
       <label class="lbl" for="email">Tu correo electrónico</label>
       <input class="inp" type="email" id="email" name="email" placeholder="Escribe tu correo electrónico" required/>
     </div>
+    <div class="form-group">
+      <label class="lbl" for="whatsapp">WhatsApp opcional</label>
+      <input class="inp" type="tel" id="whatsapp" name="whatsapp" placeholder="Para avisarte primero si quieres"/>
+    </div>
     <button class="btn" type="submit">Quiero acceso prioritario →</button>
     <p class="disclaimer" style="font-size:13px; line-height:1.5; color:#8FA3BF; text-align:center; margin-top:14px;">🔒 Sin spam. Solo recibirás información importante sobre Rodilla Segura.</p>
   </div>
 </div>
 <script>
+const TRACKING_KEYS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+
+function getOrCreateLeadId() {
+  let leadId = localStorage.getItem('rodillaLeadId');
+  if (!leadId) {
+    leadId = `rs-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+    localStorage.setItem('rodillaLeadId', leadId);
+  }
+  return leadId;
+}
+
+function getTrackingData() {
+  const params = new URLSearchParams(window.location.search);
+  const stored = JSON.parse(localStorage.getItem('rodillaTracking') || '{}');
+  const data = {
+    leadId: getOrCreateLeadId(),
+    referrer: stored.referrer || document.referrer || '',
+    landingUrl: stored.landingUrl || window.location.href
+  };
+
+  TRACKING_KEYS.forEach(key => {
+    data[key] = params.get(key) || stored[key] || '';
+  });
+
+  localStorage.setItem('rodillaTracking', JSON.stringify(data));
+  return data;
+}
+
 document.querySelector('button.btn').addEventListener('click', async function(e) {
   e.preventDefault();
   const nombre = document.getElementById('nombre').value.trim();
   const correo = document.getElementById('email').value.trim();
+  const whatsapp = document.getElementById('whatsapp').value.trim();
   if (!nombre || !correo) return;
+
+  const tracking = getTrackingData();
+  localStorage.setItem('rodillaLead', JSON.stringify({ nombre, correo, whatsapp }));
 
   this.disabled = true;
   this.textContent = 'Registrando...';
 
   try {
-    await fetch('https://script.google.com/macros/s/AKfycbwqAU0kJ4-16Ngamc5nPj1E5-2LHoIdp0XAaRlwZfaia5-8yeAsqguWpiM0pNOkEnxkJw/exec', {
+    await fetch('https://script.google.com/macros/s/AKfycbxeI388l8h-kHDn9-QDcmK4VqbFDFhGfy-eaNvQ0dpm01W35L2I50A9PDtVOoeDDSCsBA/exec', {
       method: 'POST',
       mode: 'no-cors',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         nombre,
         correo,
+        whatsapp,
         origen: 'landing-preregistro',
         pagina: 'captura',
-        fechaCliente: new Date().toISOString()
+        fechaCliente: new Date().toISOString(),
+        ...tracking
       })
     });
   } catch(err) {}
 
-  window.location.href = 'gracias.html';
+  window.location.href = `gracias.html${window.location.search || ''}`;
 });
 </script>
 </body>

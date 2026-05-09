@@ -216,7 +216,7 @@ line-height:1.2;
     <div class="divider"></div>
 
     <div class="form-group">
-      <span class="lbl">PASO 5 DE 6</span>
+      <span class="lbl">PASO 5 DE 7</span>
       <p class="question">Si Rodilla Segura se adapta a ti, ¿qué te interesaría más?</p>
       <div class="options">
         <label class="option-label"><input type="radio" name="interes" value="Información gratuita" required><span>Información gratuita</span></label>
@@ -229,7 +229,20 @@ line-height:1.2;
     <div class="divider"></div>
 
     <div class="form-group">
-      <span class="lbl">PASO 6 DE 6</span>
+      <span class="lbl">PASO 6 DE 7</span>
+      <p class="question">¿Qué tan interesado estás en entrar cuando abramos?</p>
+      <div class="options">
+        <label class="option-label"><input type="radio" name="intencion" value="Solo quiero información" required><span>Solo quiero información</span></label>
+        <label class="option-label"><input type="radio" name="intencion" value="Me interesa si el precio me queda"><span>Me interesa si el precio me queda</span></label>
+        <label class="option-label"><input type="radio" name="intencion" value="Quiero entrar cuando abra"><span>Quiero entrar cuando abra</span></label>
+        <label class="option-label"><input type="radio" name="intencion" value="Necesito ayuda pronto"><span>Necesito ayuda pronto</span></label>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="form-group">
+      <span class="lbl">PASO 7 DE 7</span>
       <p class="question">¿Hay algo más que quieras que Chava sepa?</p>
       <textarea class="textarea" name="adicional" placeholder="Este espacio es tuyo..."></textarea>
     </div>
@@ -264,10 +277,33 @@ line-height:1.2;
 </div>
 <script>
 
+const TRACKING_KEYS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+
+function getTrackingData() {
+  const params = new URLSearchParams(window.location.search);
+  const stored = JSON.parse(localStorage.getItem('rodillaTracking') || '{}');
+  const data = {
+    leadId: localStorage.getItem('rodillaLeadId') || stored.leadId || '',
+    referrer: stored.referrer || document.referrer || '',
+    landingUrl: stored.landingUrl || ''
+  };
+
+  TRACKING_KEYS.forEach(key => {
+    data[key] = params.get(key) || stored[key] || '';
+  });
+
+  localStorage.setItem('rodillaTracking', JSON.stringify(data));
+  return data;
+}
+
+function getLeadData() {
+  return JSON.parse(localStorage.getItem('rodillaLead') || '{}');
+}
+
 document.querySelectorAll('.option-label input[type="radio"]').forEach(radio => {
   radio.addEventListener('change', () => {
-    document.querySelectorAll('.option-label').forEach(label => {
-      label.classList.remove('selected');
+    document.querySelectorAll(`input[name="${radio.name}"]`).forEach(input => {
+      input.closest('.option-label').classList.remove('selected');
     });
     radio.closest('.option-label').classList.add('selected');
   });
@@ -290,7 +326,10 @@ document.getElementById('encuestaForm').addEventListener('submit', async functio
   const mejorar = this.mejorar.value;
   const freno = this.freno.value;
   const interes = this.interes.value;
+  const intencion = this.intencion.value;
   const adicional = this.adicional.value.trim();
+  const tracking = getTrackingData();
+  const lead = getLeadData();
 
   const data = {
     // Campos actuales del formulario
@@ -299,21 +338,26 @@ document.getElementById('encuestaForm').addEventListener('submit', async functio
     mejorar,
     freno,
     interes,
+    intencion,
     adicional,
+    nombre: lead.nombre || '',
+    correo: lead.correo || '',
+    whatsapp: lead.whatsapp || '',
 
     // Compatibilidad con el Apps Script/Sheet anterior
     resultados: situacion,
     dificultad: mejorar,
     dispositivo: freno,
-    mensaje: `Interés: ${interes}${adicional ? `\nAdicional: ${adicional}` : ''}`,
+    mensaje: `Interés: ${interes}\nIntención: ${intencion}${adicional ? `\nAdicional: ${adicional}` : ''}`,
 
     origen: 'landing-preregistro',
     pagina: 'encuesta',
-    fechaCliente: new Date().toISOString()
+    fechaCliente: new Date().toISOString(),
+    ...tracking
   };
 
   try {
-    await fetch('https://script.google.com/macros/s/AKfycbwV3Yu_ZKULzY__Zhu70Qr6wfKqgXMxgniM2LVoKJTXlm0WMHxPADTClRC1w2wGbwtMcA/exec', {
+    await fetch('https://script.google.com/macros/s/AKfycbwP2hXvM9EveiOUrZvIshWjih_FcnmD5qbhU1Keb6VSzxZ9XQPU1pBj6DQdBYtKGLfPRg/exec', {
       method: 'POST',
       mode: 'no-cors',
       headers: {'Content-Type': 'application/json'},
