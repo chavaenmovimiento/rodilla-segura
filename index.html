@@ -71,7 +71,13 @@ document.querySelector('button.btn').addEventListener('click', async function(e)
       method: 'POST',
       mode: 'no-cors',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ nombre, correo })
+      body: JSON.stringify({
+        nombre,
+        correo,
+        origen: 'landing-preregistro',
+        pagina: 'captura',
+        fechaCliente: new Date().toISOString()
+      })
     });
   } catch(err) {}
 
