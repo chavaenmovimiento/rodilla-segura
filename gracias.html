@@ -66,18 +66,34 @@
     .text{
       color:#94A3B8;
       font-size:16px;
-      line-height:1.7;
-      margin-bottom:22px;
+      line-height:1.65;
+      margin-bottom:18px;
+    }
+
+    .build-note{
+      background:#0A0F1E;
+      border:1px solid #1e2d45;
+      border-radius:18px;
+      padding:20px;
+      margin:24px 0;
+      color:#CBD5E1;
+      font-size:16px;
+      line-height:1.6;
+      box-shadow:0 8px 24px rgba(26,82,118,.12);
+    }
+
+    .build-note strong{
+      color:#F1F5F9;
     }
 
     .gift{
       background:#0A0F1E;
       border:1px solid #1e2d45;
       border-radius:18px;
-      padding:22px;
-      margin:28px 0;
+      padding:18px 20px;
+      margin:20px 0;
       color:#CBD5E1;
-      font-size:17px;
+      font-size:16px;
       line-height:1.6;
       box-shadow:0 8px 24px rgba(26,82,118,.12);
     }
@@ -90,6 +106,72 @@
       color:#8FA3BF;
       font-size:14px;
       margin-bottom:24px;
+    }
+
+    .icon-gift,.icon-clock{
+      display:inline-block;
+      position:relative;
+      color:currentColor;
+      vertical-align:-2px;
+      margin-right:7px;
+    }
+
+    .icon-gift{
+      width:16px;
+      height:14px;
+      border:2px solid currentColor;
+      border-radius:3px;
+    }
+
+    .icon-gift::before{
+      content:'';
+      position:absolute;
+      left:5px;
+      top:-2px;
+      width:2px;
+      height:14px;
+      background:currentColor;
+    }
+
+    .icon-gift::after{
+      content:'';
+      position:absolute;
+      left:-3px;
+      top:3px;
+      width:18px;
+      height:2px;
+      background:currentColor;
+    }
+
+    .icon-clock{
+      width:15px;
+      height:15px;
+      border:2px solid currentColor;
+      border-radius:50%;
+    }
+
+    .icon-clock::before{
+      content:'';
+      position:absolute;
+      left:5px;
+      top:2px;
+      width:2px;
+      height:5px;
+      background:currentColor;
+      border-radius:2px;
+    }
+
+    .icon-clock::after{
+      content:'';
+      position:absolute;
+      left:5px;
+      top:6px;
+      width:5px;
+      height:2px;
+      background:currentColor;
+      border-radius:2px;
+      transform:rotate(28deg);
+      transform-origin:left center;
     }
 
     .btn{
@@ -126,31 +208,37 @@
   <div class="check">✓</div>
 
    <h1>
-  <div style="font-size:0.95em; margin-bottom:14px; font-weight:800;">¡Listo!</div>
-  Tu acceso prioritario <span>quedó confirmado</span>
-</h1>
+	  <div style="font-size:0.95em; margin-bottom:14px; font-weight:800;">¡Listo!</div>
+	  Ya estás en la <span>lista prioritaria</span>
+	</h1>
 
-    <p class="text">
-      Solo falta responder una breve encuesta para personalizar mejor Rodilla Segura para ti.
-    </p>
+	    <p class="text">
+	      Gracias por registrarte. Cuando abra Rodilla Segura, quiero que seas de las primeras personas en enterarte.
+	    </p>
 
-    <div class="gift">
-  🎁 Al completar la encuesta accedes a una sorpresa especial:
-  <br><br>
-  <strong>Un recurso exclusivo diseñado para ti</strong>
-</div>
+	    <div class="build-note">
+	      <strong>Antes de abrir inscripciones, quiero construir este programa escuchando a personas como tú.</strong>
+	      <br><br>
+	      Tus respuestas me ayudan a entender qué necesitas, qué te preocupa de tu rodilla y cómo puedo hacer Rodilla Segura más útil para ti.
+	    </div>
+
+	    <div class="gift">
+	  <span class="icon-gift" aria-hidden="true"></span>Al terminar, te voy a compartir una sorpresa especial para empezar a entender mejor tu rodilla.
+	  <br><br>
+	  <strong>No es una encuesta genérica: es una forma de que tu situación también sea parte de cómo estoy afinando el programa.</strong>
+	</div>
 
     <p class="time">
-      ⏱ Te tomará menos de 2 minutos.
+	      <span class="icon-clock" aria-hidden="true"></span>Te tomará menos de 2 minutos.
     </p>
 
-    <a id="encuestaLink" href="https://preregistro.chavaenmovimiento.com/encuesta.html" class="btn">
-      Acceder a mi sorpresa 🎁
-    </a>
+	    <a id="encuestaLink" href="https://preregistro.chavaenmovimiento.com/encuesta.html" class="btn">
+	      Ayudarme a construir Rodilla Segura
+	    </a>
 
-    <p class="footer">
-      Sin spam. Solo información útil y prioridad de acceso.
-    </p>
+	    <p class="footer">
+	      Gracias por ser parte de esta etapa inicial.
+	    </p>
 
   </section>
 
