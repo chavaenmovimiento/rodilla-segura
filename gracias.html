@@ -108,7 +108,43 @@
       margin-bottom:24px;
     }
 
-    .icon-gift,.icon-clock{
+    .icon-survey{
+      display:block;
+      position:relative;
+      width:24px;
+      height:28px;
+      margin:0 auto 12px;
+      color:#3498DB;
+      border:2px solid currentColor;
+      border-radius:5px;
+    }
+
+    .icon-survey::before{
+      content:'';
+      position:absolute;
+      left:5px;
+      top:-7px;
+      width:10px;
+      height:7px;
+      border:2px solid currentColor;
+      border-bottom:0;
+      border-radius:5px 5px 0 0;
+      background:#0A0F1E;
+    }
+
+    .icon-survey::after{
+      content:'';
+      position:absolute;
+      left:6px;
+      top:8px;
+      width:10px;
+      height:2px;
+      background:currentColor;
+      border-radius:2px;
+      box-shadow:0 6px 0 currentColor,0 12px 0 currentColor;
+    }
+
+    .icon-gift,.icon-clock,.icon-cta{
       display:inline-block;
       position:relative;
       color:currentColor;
@@ -174,6 +210,38 @@
       transform-origin:left center;
     }
 
+    .icon-cta{
+      width:18px;
+      height:18px;
+      border:2px solid currentColor;
+      border-radius:50%;
+      vertical-align:-3px;
+      margin-right:9px;
+    }
+
+    .icon-cta::before{
+      content:'';
+      position:absolute;
+      left:5px;
+      top:4px;
+      width:5px;
+      height:5px;
+      border-top:2px solid currentColor;
+      border-right:2px solid currentColor;
+      transform:rotate(45deg);
+    }
+
+    .icon-cta::after{
+      content:'';
+      position:absolute;
+      left:4px;
+      top:7px;
+      width:8px;
+      height:2px;
+      background:currentColor;
+      border-radius:2px;
+    }
+
     .btn{
       display:block;
       width:100%;
@@ -198,6 +266,36 @@
       font-size:14px;
       color:#7C8DA6;
     }
+
+    @media (max-width:480px){
+      body{
+        padding:20px;
+      }
+
+      .card{
+        padding:34px 30px;
+      }
+
+      .check{
+        width:58px;
+        height:58px;
+        font-size:30px;
+      }
+
+      .build-note{
+        padding:17px 20px;
+        margin:18px 0;
+      }
+
+      .gift{
+        padding:16px 20px;
+        margin:18px 0;
+      }
+
+      .btn{
+        padding:17px 20px;
+      }
+    }
   </style>
 </head>
 
@@ -217,6 +315,7 @@
 	    </p>
 
 	    <div class="build-note">
+	      <span class="icon-survey" aria-hidden="true"></span>
 	      Ayúdame contestando esta encuesta. Tus respuestas me van a ayudar a construir Rodilla Segura con lo que realmente necesitas.
 	    </div>
 
@@ -229,7 +328,7 @@
     </p>
 
 	    <a id="encuestaLink" href="https://preregistro.chavaenmovimiento.com/encuesta.html" class="btn">
-	      Ayúdame a construir Rodilla Segura
+	      <span class="icon-cta" aria-hidden="true"></span>Ayúdame a construir Rodilla Segura
 	    </a>
 
   </section>
